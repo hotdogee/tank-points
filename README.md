@@ -1,5 +1,9 @@
 # TankPoints 2.0 - A benchmark for survivability gear.
 
+🔥 CurseForge: https://www.curseforge.com/wow/addons/tank-points
+
+🔥 WoWInterface: https://www.wowinterface.com/downloads/info6419-TankPoints.html
+
 ## The physical meaning of a TankPoint
 
 TankPoints is designed as a dynamic points system, optimized on the fly using well known game dynamics, unlike most other wow item benchmarks, there is a physical meaning of a TankPoint.
