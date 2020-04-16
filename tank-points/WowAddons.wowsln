@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# WowAddOnStudio Solution File, Format Version 11.00
+Project("{E6E1D386-69D8-4755-9E61-0950293915FC}") = "TankPoints", "TankPoints.wowproj", "{F23ABDCA-3DF4-4E90-AA23-C6DA21C6C1FB}"
+EndProject
+Project("{E6E1D386-69D8-4755-9E61-0950293915FC}") = "HealPoints", "..\HealPoints\HealPoints.wowproj", "{5BECCE35-7BCD-47D8-8ED7-1CBA0EA1DA41}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Any CPU = Default|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F23ABDCA-3DF4-4E90-AA23-C6DA21C6C1FB}.Default|Any CPU.ActiveCfg = Default|Any CPU
+		{F23ABDCA-3DF4-4E90-AA23-C6DA21C6C1FB}.Default|Any CPU.Build.0 = Default|Any CPU
+		{5BECCE35-7BCD-47D8-8ED7-1CBA0EA1DA41}.Default|Any CPU.ActiveCfg = Default|Any CPU
+		{5BECCE35-7BCD-47D8-8ED7-1CBA0EA1DA41}.Default|Any CPU.Build.0 = Default|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

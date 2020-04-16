@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Deploy" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Default</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{f23abdca-3df4-4e90-aa23-c6da21c6c1fb}</ProjectGuid>
+    <Name>TankPoints</Name>
+    <AssemblyName>TankPoints2</AssemblyName>
+    <RootNamespace>TankPoints2</RootNamespace>
+    <WowPath>D:\Games\World of Warcraft</WowPath>
+    <AddonTitle>TankPoints</AddonTitle>
+    <DeployBasePath>D:\Games\World of Warcraft</DeployBasePath>
+    <RuntimePath>D:\Games\World of Warcraft</RuntimePath>
+    <SccProjectName>Svn</SccProjectName>
+    <SccProvider>SubversionScc</SccProvider>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccLocalPath>Svn</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Default' ">
+    <OutputPath>.</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include=".pkgmeta" />
+    <Content Include="About TankPoints 2.0.txt" />
+    <Content Include="CalculatorFrame Documentation.psd" />
+    <Content Include="GPL.txt" />
+    <Content Include="libs\AceTimer-3.0\AceTimer-3.0.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceTimer-3.0\AceTimer-3.0.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\LibStatLogic-1.2\Formulas.docx" />
+    <Content Include="libs\LibStatLogic-1.2\Locales\deDE.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\LibStatLogic-1.2\Locales\enGB.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\LibStatLogic-1.2\Locales\enUS.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\LibStatLogic-1.2\Locales\esES.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\LibStatLogic-1.2\Locales\esMX.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\LibStatLogic-1.2\Locales\frFR.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\LibStatLogic-1.2\Locales\itIT.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\LibStatLogic-1.2\Locales\koKR.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\LibStatLogic-1.2\Locales\Locales.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\LibStatLogic-1.2\Locales\ptBR.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\LibStatLogic-1.2\Locales\ruRU.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\LibStatLogic-1.2\Locales\zhCN.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\LibStatLogic-1.2\Locales\zhTW.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\LibStub\.pkgmeta" />
+    <Content Include="libs\LibStub\LibStub.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\LibStub\LibStub.toc">
+      <SubType>TableOfContents</SubType>
+    </Content>
+    <Content Include="SpaceDebug-3.0\SpaceDebug-3.0.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="SpaceDebug-3.0\SpaceDebug-3.0.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="TankPoints_Calculator.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="embeds.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\AceAddon-3.0\AceAddon-3.0.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceAddon-3.0\AceAddon-3.0.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\AceConfig-3.0\AceConfig-3.0.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceConfig-3.0\AceConfig-3.0.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\AceConfig-3.0\AceConfigCmd-3.0\AceConfigCmd-3.0.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceConfig-3.0\AceConfigCmd-3.0\AceConfigCmd-3.0.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\AceConfig-3.0\AceConfigDialog-3.0\AceConfigDialog-3.0.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceConfig-3.0\AceConfigDialog-3.0\AceConfigDialog-3.0.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\AceConfig-3.0\AceConfigRegistry-3.0\AceConfigRegistry-3.0.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceConfig-3.0\AceConfigRegistry-3.0\AceConfigRegistry-3.0.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\AceConsole-3.0\AceConsole-3.0.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceConsole-3.0\AceConsole-3.0.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\AceDB-3.0\AceDB-3.0.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceDB-3.0\AceDB-3.0.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\AceEvent-3.0\AceEvent-3.0.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceEvent-3.0\AceEvent-3.0.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\AceGUI-3.0.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\AceGUI-3.0.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIContainer-BlizOptionsGroup.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIContainer-DropDownGroup.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIContainer-Frame.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIContainer-InlineGroup.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIContainer-ScrollFrame.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIContainer-SimpleGroup.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIContainer-TabGroup.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIContainer-TreeGroup.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIContainer-Window.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIWidget-Button.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIWidget-CheckBox.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIWidget-ColorPicker.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIWidget-DropDown-Items.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIWidget-DropDown.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIWidget-EditBox.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIWidget-Heading.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIWidget-Icon.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIWidget-InteractiveLabel.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIWidget-Keybinding.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIWidget-Label.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIWidget-MultiLineEditBox.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceGUI-3.0\widgets\AceGUIWidget-Slider.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceLocale-3.0\AceLocale-3.0.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\AceLocale-3.0\AceLocale-3.0.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\CallbackHandler-1.0\CallbackHandler-1.0.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\CallbackHandler-1.0\CallbackHandler-1.0.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\LibStatLogic-1.2\lib.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\LibStatLogic-1.2\LibStatLogic-1.2.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libs\LibTipHooker-1.1\lib.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="libs\LibTipHooker-1.1\LibTipHooker-1.1.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Locales\deDE.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Locales\enUS.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Locales\esES.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Locales\frFR.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Locales\koKR.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Locales\Locales.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="Locales\zhCN.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Locales\zhTW.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="options.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="TankPoints.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="TankPoints.toc">
+      <SubType>TableOfContents</SubType>
+    </Content>
+    <Content Include="TankPointsCalculator.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="TankPointsCalculator.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="TankPointsLibDataBroker.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="TankPointsPaperDollStats.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="TankPointsTooltips.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Toolkit-1.0.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="UTF8\utf8.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="UTF8\utf8data.lua">
+      <SubType>Code</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="libs\" />
+    <Folder Include="libs\AceAddon-3.0\" />
+    <Folder Include="libs\AceConfig-3.0\" />
+    <Folder Include="libs\AceConfig-3.0\AceConfigCmd-3.0\" />
+    <Folder Include="libs\AceConfig-3.0\AceConfigDialog-3.0\" />
+    <Folder Include="libs\AceConfig-3.0\AceConfigDropdown-3.0\" />
+    <Folder Include="libs\AceConfig-3.0\AceConfigRegistry-3.0\" />
+    <Folder Include="libs\AceConsole-3.0\" />
+    <Folder Include="libs\AceDB-3.0\" />
+    <Folder Include="libs\AceEvent-3.0\" />
+    <Folder Include="libs\AceGUI-3.0\" />
+    <Folder Include="libs\AceGUI-3.0\widgets\" />
+    <Folder Include="libs\AceLocale-3.0\" />
+    <Folder Include="libs\AceTimer-3.0\" />
+    <Folder Include="libs\CallbackHandler-1.0\" />
+    <Folder Include="libs\LibStatLogic-1.2\" />
+    <Folder Include="libs\LibStatLogic-1.2\Locales" />
+    <Folder Include="libs\LibStub\" />
+    <Folder Include="libs\LibTipHooker-1.1\" />
+    <Folder Include="Locales\" />
+    <Folder Include="SpaceDebug-3.0\" />
+    <Folder Include="UTF8\" />
+  </ItemGroup>
+  <Import Project="$(DevEnvDir)\Extensions\Tools\MSBuild\Microsoft\WowAddonStudio\3.0\WowAddonStudio.targets" />
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it. 
+		
+	<Target Name="BeforeClean"></Target>
+	<Target Name="AfterClean"></Target>
+	<Target Name="BeforeRebuild"></Target>
+	<Target Name="AfterRebuild"></Target>
+	<Target Name="BeforeDeploy"></Target>
+	<Target Name="AfterDeploy"></Target>
+	-->
+</Project>

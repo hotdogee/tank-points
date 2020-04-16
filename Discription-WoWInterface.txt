@@ -1,0 +1,231 @@
+[SIZE=4][B]TankPoints 2.0 - A benchmark for survivalbilitygear[/B][/SIZE]
+
+[COLOR=SandyBrown][B][SIZE=3]Localized in: English, French, German[/SIZE][/B][/COLOR]
+
+[SIZE=2][COLOR=DarkOrange][B]** About TankPoints **[/B][/COLOR][/SIZE]
+
+TankPoints was created to help myself compare different pieces of tanking gear, because it was difficult to decided at a glance like whether +12 defense is better then +1 dodge.
+
+TankPoints can be seen as how much raw damage you can take before damage reduction, it considers your max health, armor, defense, dodge, parry, block, block value, resilience, crushing blow chance, miss, crit reduction, talants, buffs, stance/forms, and more.
+
+Keep in mind though, that higher TankPoints does not make a better tank, it is only a benchmark for survivalbility gear but does not calculate threat.
+It can not decide for you what you should wear for what boss, but it can provide you with a wealth of information what will hopfully be useful for choosing gear.
+
+
+[SIZE=2][COLOR=DarkOrange][B]** About TankPoints 2.0 **[/B][/COLOR][/SIZE]
+
+TankPoints 2.0 is a complete rewrite of my original TankPoints for the 2.0 WoW using the Ace2 framework.
+
+It has a much improved TankPoints algorithm, intergrates nicely into the character stats dropdown menu, and shows a lot more information then the original TankPoints.
+
+2.0 introduced a new combat ratings system which made it even harder to compare gear, in order to code combat rating support for TankPoints, the exact rating to percentage formula is required which Blizzard didn't give us.
+Luckly, I have suceessfully reverse engineered the rating formula for all levels and coded an addon called "Rating Buster" that converts ratings on item tooltips into percentages, you can try it out [URL=http://www.wowinterface.com/downloads/fileinfo.php?id=5819]here[/URL].
+
+
+[SIZE=2][COLOR=DarkOrange][B]** How to use **[/B][/COLOR][/SIZE]
+
+Gravity has writen an awesome 7 page guide to using TankPoints on his blog: [URL]http://pwnwear.com/tankpoints-user-guide/[/URL]
+
+
+[SIZE=2][COLOR=DarkOrange][B]** The value of Block **[/B][/COLOR][/SIZE]
+
+The value is Shield Block Value and Block Rating is highly dependent on what you are tanking.
+Its very good for mobs that don't hit very hard like in heroics, but is worth much less on hard hitting bosses in 25 man raids.
+At level 80, TankPoints' default mob damage is tuned to 25 man raids, with a value of 24365 damage before mitigation.
+You can change this value to match what you plan on tanking by using the "/tp mob damage" command in game.
+A mob damage of 10505 for example is a good value for level 80 heroics.
+
+TankPoints also calculates the value of Shield Block for Warriors, and Holy Shield for Paladins.
+You can use the "/tp player sbfreq" command to set a shield block frequency that matches your rotation (in how many seconds AFTER cooldown finishes).
+For most tankadins rotations, you will have a 100% Holy Shield uptime, using "/tp player sbfreq 1" will tell TankPoints that you will use Holy Shield 1 second after cooldown finishes (every 9 secs).
+
+
+[SIZE=2][COLOR=DarkOrange][B]** TankPoints 2.0 Features **[/B][/COLOR][/SIZE]
+
+In addition to the original formula, the [B]Imporved TankPoints 2.0 formula [/B] now has:[list]
+[*]Support for all combat ratings including the new resilience stat
+[*]Support for block% and block value
+[*]Support for various class specific talants and buffs
+[*]Support for crushing blows
+[*]Support for combat table and correctly caps off at a total of 100%. Using Hit < Crushing < Crit < Block < Parry < Dodge < Miss
+[*]Support for mob stats:
+[list]
+[*]Mob level - defaults player level +3
+[*]Mob damage
+[*]Mob melee crit chance
+[*]Mob melee crit bonus
+[*]Mob melee miss chance
+[*]Mob spell crit chance
+[*]Mob spell crit bonus
+[*]Mob spell miss chance
+[/list][/list]
+
+[B]Improved TankPoints Calculator[/B]
+
+[B]TankPoints User Interface[/B]:
+[list]
+[*]Intergrated in to the Character stats dropdown menu (See Screeshots)
+[*]When TankPoints is selected it displays:[list]
+  [*]TankPoints
+  [*]Melee Damage Reduction
+  [*]Block Value
+  [*]Spell TankPoints
+  [*]Spell Damage Reduction[/list]
+[*]TankPoints tooltip:[list]
+  [*]Your stance
+  [*]Mob Stats[list]
+    [*]Mob Level
+    [*]Mob Damage (after damage reduction)
+    [*]Mob Crit Chance
+    [*]Mob Miss Chance[/list]
+  [*]TankPoints per StatValue - Shows how much TankPoints you gain for each stats with equal item values, because the values below are equal in the item value formula, you can use this data to see what gives the most bang for the buck in terms of item budgets.[list]
+    [*]1 Agility = 
+    [*]1.5 Stamina = 
+    [*]10 Armor = 
+    [*]1 Resilience = 
+    [*]1 Defense Rating = 
+    [*]1 Dodge Rating = 
+    [*]1 Parry Rating = 
+    [*]1 Block Rating = 
+    [*]1.54 Block Value[/list]
+  [*]Option to hold down ALT key will show how much TankPoints you gain for each stat point[list]
+    [*]1 Agility
+    [*]1 Stamina
+    [*]1 Armor
+    [*]1 Resilience
+    [*]1% Defense
+    [*]1% Dodge
+    [*]1% Parry
+    [*]1% Block
+    [*]1 Block Value[/list][/list]
+[*]Melee Damage Reduction tooltip:[list]
+  [*]Armor Damage Reduction against mob level - Useful because the default armor tooltip only shows the reduction for the same level
+  [*]Mob Level, Player Level
+  [*]Combat Table - Hit < Crushing < Crit < Block < Parry < Dodge < Miss
+    The total of these chances must be capped at 100%, if you exceed 100% then lower priority values will be pushed off the table. 
+    For example, when you press shield block (+75% block chance), hit, crush and crit will all be pushed off and will be 0, your real block chance will also be capped at (100% - Parry% - Dodge% - Miss%)[/list]
+[*]Block Value tooltip - Block Value should have been included in the default UI, but they didn't so I coded my own function that does it, strength, items, talents(warrior, paladin, shaman) are all considered in the algorithm.[list]
+  [*]Mob Damage before Damage Reduction (armor and stance effects)
+  [*]Mob Damage after Damage Reduction
+  [*]Blocked percentage = Block Value / Mob Damage after DR
+  [*]Block Chance
+  [*]Equivalent Block Mitigation = Block Chance * Blocked percentage
+    This can be seen equal with the same amount of dodge or parry.[/list]
+[*]Spell TankPoints Tooltip - Shows your strongest school by default[list]
+  [*]Your stance
+  [*]TankPoints at the following Melee/Spell Damage Ratio[list]
+    [*]25% Melee Damage + 75% <school> damage
+    [*]50% Melee Damage + 50% <school> damage
+    [*]75% Melee Damage + 25% <school> damage[/list]
+  [*]Can manually cycle through all schools by left clicking the stat
+  [*]Reset back to showing the strongest school by right click the stat[/list]
+[*]Spell Damage Reduction - Shows your strongest school by default[list]
+  [*]Shows damage reductions for all schools
+  [*]Same click functions as the Spell TankPoints Tooltip[/list][/list]
+
+[B]Supported class talants and buffs[/B]:
+[list]
+[*]Warrior: Improved Defensive Stance, Shield Mastery, Shield Wall - Buff, Death Wish - Buff, Recklessness - Buff, Toughness, Vitality
+[*]Druid: Survival of the Fittest, Natural Perfection, Thick Hide, Balance of Power, Heart of the Wild
+[*]Paladin: Shield Specialization, Divine Purpose, Blessed Life, Ardent Defender, Spell Warding, Improved Righteous Fury, Divine Strength, Toughness
+[*]Shaman: Shield Specialization, Elemental Shields, Elemental Warding, Toughness
+[*]Rogue: Sleight of Hand, Heightened Senses, Deadened Nerves, Vitality, Sinister Calling, Cloak of Shadows - Buff
+[*]Hunter: Survival Instincts, Thick Hide, Combat Experience, Lightning Reflexes
+[*]Priest: Shadow Resilience, Spell Warding, Pain Suppression - Buff, Enlightenment
+[*]Hunter: Survivalist, Endurance Training
+[*]Warlock: Demonic Resilience, Master Demonologist, Soul Link - Buff, Demonic Embrace, Fel Stamina
+[*]Mage: Arctic Winds, Prismatic Cloak, Playing with Fire, Frozen Core[/list]
+
+[SIZE=2][COLOR=DarkOrange][B]** Slash Commands **[/B][/COLOR][/SIZE]
+
+Use: /tp or /tankpoints
+
+/tp - Show help
+/tp calc - Toggle calculator
+/tp mob - Show mob stats help 
+/tp mob level (-20 - +20) - Sets the level difference between the mob and you
+/tp mob damage (0 - 99999) - Sets mob's damage before damage reduction
+/tp mob default - Restores default mob stats
+/tp mob advanced - Show advanced mob stats help
+/tp mob advanced crit (0 - 100) - Sets mob's melee crit chance
+/tp mob advanced critbonus - Sets mob's melee crit bonus
+/tp mob advanced miss (0 - 100) - Sets mob's melee miss chance
+/tp mob advanced spellcrit (0 - 100) - Sets mob's spell crit chance
+/tp mob advanced spellcritbonus - Sets mob's spell crit bonus
+/tp mob advanced spellmiss (0 - 100) - Sets mob's spell miss chance
+/tp player sbfreq (0 - 1000) - Sets the Shield Block press delay in seconds after Shield Block finishes cooldown
+
+[SIZE=2][COLOR=DarkOrange][B]** TankPoints Formulas **[/B][/COLOR][/SIZE]
+
+TankPoints
+[IMG]http://img49.imageshack.us/img49/9571/tpformulawowinterfacegg0.gif[/IMG]
+Melee Total Reduction
+[list][*][font=Courier New]totalReduction[MELEE] = 1 - ((mobCritChance * (1 + mobCritBonus) * mobCritDamageMod) + (mobCrushChance * 1.5) + (1 - mobCrushChance - mobCritChance - blockChance * blockedMod - parryChance - dodgeChance - mobMissChance)) * (1 - armorReduction) * meleeTakenMod[/font][/list]
+Spell Total Reduction
+[list][*][font=Courier New]totalReduction[SCHOOL] = 1 - ((mobSpellCritChance * (1 + mobSpellCritBonus) * mobSpellCritDamageMod) + (1 - mobSpellCritChance - mobSpellMissChance)) * (1 - schoolReduction[SCHOOL]) * spellTakenMod[/font][/list]
+Armor Reduction
+[CODE]
+levelModifier = attackerLevel
+if ( levelModifier > 59 ) then
+  levelModifier = levelModifier + (4.5 * (levelModifier - 59))
+end
+armorReductionTemp = armor / ((85 * levelModifier) + 400)
+armorReduction = armorReductionTemp / (armorReductionTemp + 1)
+if armorReduction > 0.75 then
+  armorReduction = 0.75
+end
+if armorReduction < 0 then
+  armorReduction = 0
+end
+[/CODE]
+Defense Effect
+[list][*][font=Courier New]defenseEffect = (defense - attackerLevel * 5) * 0.04 * 0.01[/font][/list]
+Block Value From Strength
+[list][*][font=Courier New]blockValueFromStrength = floor(totalStr * 0.5 - 10)[/font][/list]
+Block Value
+[list][*][font=Courier New]blockValue = floor((floor(totalStr * 0.5 - 10) + blockValueFromItems + blockValueFromShield) * blockValueMod)[/font][/list]
+Mob Damage (default formula)
+[list][*][font=Courier New]mobDamage = (levelModifier * 55) * meleeTakenMod * (1 - armorReduction)[/font][/list]
+Resilience Effect
+[list][*][font=Courier New]resilienceEffect = ReverseRating(resilience, playerLevel) * 0.01[/font][/list]
+Mob Crit Chance
+[list][*][font=Courier New]mobCritChance = max(0, 0.05 - defenseEffect - resilienceEffect)[/font][/list]
+Mob Crit Bonus
+[list][*][font=Courier New]mobCritBonus = 1[/font][/list]
+Mob Miss Chance
+[list][*][font=Courier New]mobMissChance = max(0, 0.05 + defenseEffect)[/font][/list]
+[list][*][font=Courier New]mobCrushChance = (mobLevel - playerLevel) * 0.1 - 0.15 (if mobLevel is +4)[/font][/list]
+Mob Crit Damage Mod
+[list][*][font=Courier New]mobCritDamageMod = max(0, 1 - resilienceEffect * 2)[/font][/list]
+Blocked Mod
+[list][*][font=Courier New]blockedMod = min(1, blockValue / mobDamage)[/font][/list]
+Mob Spell Crit Chance
+[list][*][font=Courier New]mobSpellCritChance = max(0, 0 - resilienceEffect)[/font][/list]
+Mob Spell Crit Bonus
+[list][*][font=Courier New]mobSpellCritBonus = 0.5[/font][/list]
+Mob Spell Miss Chance
+[list][*][font=Courier New]mobSpellMissChance = 0[/font][/list]
+Mob Spell Crit Damage Mod
+[list][*][font=Courier New]mobSpellCritDamageMod = max(0, 1 - resilienceEffect * 2)[/font][/list]
+Resistance Reduction
+[list][*][font=Courier New]schoolReduction[SCHOOL] = 0.75 * (resistance[SCHOOL] / (mobLevel * 5))[/font][/list]
+EffectiveHealth (EH)
+[list][*][font=Courier New]effectiveHealth[MELEE] = playerHealth * 1/(1 - (1-armorReduction) * damageTakenMod)[/font][/list]
+[list][*][font=Courier New]effectiveHealth[SCHOOL] = playerHealth * 1/(1 - damageTakenMod)[/font][/list]
+EffectiveHealthWithBlock (EHB)
+[CODE]
+For every swing of the mob (see mobAtkSpeed) until you are out of health
+    if time to press the shield block button given timeBetweenPresses
+       refresh charges on shield block
+    if mobHitChance + mobCrushChance + mobCritChance == 0 or
+      (charges left and mobHitChance + mobCrushChance + mobCritChance <= 75%)
+       use a charge on shield block
+       min(healthLeft, take raw damage from the monster per mobDamage - blockValue)
+    else
+       min(healthLeft, take raw damage from the monster per mobDamage)
+    end
+end
+[/CODE]
+
+
+[SIZE=2][COLOR=DarkOrange][B]** TODO **[/B][/COLOR][/SIZE]

@@ -1,0 +1,833 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+	<!-- Template for variable player stats -->
+	<Frame name="TPCVariablesTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="147" y="22"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_LabelText" inherits="GameFontNormal" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="147" y="22"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parent_OriginalStatText" inherits="GameFontHighlight" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parent_LabelText" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parent_PlusText" inherits="GameFontHighlight" text="+">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parent_OriginalStatText" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<!-- Area that triggers tooltip show -->
+			<Frame name="$parent_ShowTooltipFrame">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_LabelText"/>
+					<Anchor point="RIGHT" relativeTo="$parent_LabelText"/>
+				</Anchors>
+				<!--
+				<Scripts>
+					<OnEnter>
+						TankPointsCalculatorTooltip_OnEnter()
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide()
+					</OnLeave>
+				</Scripts>
+				-->
+			</Frame>
+			<Button name="$parent_DecrementButton">
+				<Size>
+					<AbsDimension x="23" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_PlusText" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						TankPointsCalculatorVariables_DecrementButton_OnClick(self, button, down)
+					</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
+				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+			</Button>
+			<Button name="$parent_IncrementButton">
+				<Size>
+					<AbsDimension x="23" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_DecrementButton" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="57" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						TankPointsCalculatorVariables_IncrementButton_OnClick(self, button, down)
+					</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
+				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+			</Button>
+			<EditBox name="$parent_InputEditBox" letters="6" autoFocus="false" enableMouse="true">
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+							<Size>
+								<AbsDimension x="8" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset>
+										<AbsDimension x="-5" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+						</Texture>
+						<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+							<Size>
+								<AbsDimension x="8" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="RIGHT">
+									<Offset>
+										<AbsDimension x="-10" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+						</Texture>
+						<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+							<Size>
+								<AbsDimension x="10" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+								<Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT"/>
+							</Anchors>
+							<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Size>
+					<AbsDimension x="64" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_DecrementButton" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						self:SetText("0")
+					</OnLoad>
+					<OnEnterPressed>
+						self:ClearFocus(self)
+					</OnEnterPressed>
+					<OnEscapePressed>
+						self:ClearFocus(self)
+					</OnEscapePressed>
+					<OnEditFocusLost>
+						self:HighlightText(0, 0)
+					</OnEditFocusLost>
+					<OnEditFocusGained>
+						self:HighlightText(self)
+					</OnEditFocusGained>
+					<OnTextChanged>
+						TankPointsCalculatorVariables_InputEditBox_OnTextChanged(self, isUserInput)
+					</OnTextChanged> 
+				</Scripts>
+				<FontString inherits="ChatFontNormal"/>
+			</EditBox>
+			<Frame>
+				<Layers>
+					<Layer level="BACKGROUND">
+						 <FontString name="$parent_EqualText" inherits="GameFontHighlight" text="=">
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="$parent_IncrementButton" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="5" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parent_NewStatText" inherits="GameFontHighlight" text="N/A" justifyH="RIGHT">
+							<Size>
+								<AbsDimension x="50" y="22"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="$parent_EqualText" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="5" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnEnter>
+				if self.tooltip then
+					GameTooltip:SetOwner(self, "ANCHOR_LEFT")
+					GameTooltip:SetText(self.tooltip)
+					if self.tooltip2 then
+						GameTooltip:AddLine(self.tooltip2, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1)
+					end
+					GameTooltip:Show()
+				end
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide()
+			</OnLeave>
+		</Scripts>
+	</Frame>
+	
+	<!-- Template for Swaping Variables -->
+	<Frame name="TPCSwapingVariableTemplate" inherits="TPCVariablesTemplate" virtual="true">
+		<Scripts>
+			<OnMouseUp>
+				self:Hide()
+				getglobal(self.next):Show()
+			</OnMouseUp>
+			<OnEnter>
+				if self.tooltip then
+					GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+					GameTooltip:SetText(self.tooltip)
+					if self.tooltip2 then
+						GameTooltip:AddLine(self.tooltip2, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1)
+					end
+					GameTooltip:Show()
+				end
+				getglobal(self:GetName().."_LabelText"):SetTextColor(GREEN_FONT_COLOR.r, GREEN_FONT_COLOR.g, GREEN_FONT_COLOR.b)
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide()
+				getglobal(self:GetName().."_LabelText"):SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
+			</OnLeave>
+		</Scripts>
+	</Frame>
+	<!-- Template for a Frame Box -->
+	<Frame name="TPCFrameBoxTemplate" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentTitle" inherits="GameFontHighlight">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="9" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Scripts>
+			<OnLoad>
+				self:SetBackdropBorderColor(0.4, 0.4, 0.4);
+				self:SetBackdropColor(0.5, 0.5, 0.5);
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	
+	<!-- Template for TankPoints calculated results -->
+	<Frame name="TPCResultsTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="200" y="22"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parent_LabelText" inherits="GameFontNormal" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="200" y="22"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<!--  -->
+				<FontString name="$parent_CurrentText" inherits="GameFontHighlight" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parent_LabelText" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parent_PlusText" inherits="GameFontHighlight" text="+">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parent_CurrentText" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parent_DifferenceText" inherits="GameFontHighlight" text="N/A" justifyH="RIGHT">
+					<Size>
+						<AbsDimension x="50" y="22"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parent_PlusText" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parent_EqualText" inherits="GameFontHighlight" text="=">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parent_DifferenceText" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parent_ResultText" inherits="GameFontHighlight" text="N/A" justifyH="RIGHT">
+					<Size>
+						<AbsDimension x="50" y="22"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parent_EqualText" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+		</Frames>
+	</Frame>
+	
+	<!-- Main calculator frame -->
+	<Frame name="TankPointsCalculatorFrame" parent="UIParent" enableMouse="true" movable="true" frameStrata="DIALOG" hidden="true" toplevel="true">
+		<Size>
+			<AbsDimension x="400" y="693"/>
+		</Size>
+		
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />	
+				<Size>
+					<AbsDimension x="128" y="17" />
+				</Size>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32" />
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32" />
+			</EdgeSize>
+		</Backdrop>
+		
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="360" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parent_HeaderText" inherits="GameFontNormal" text="TankPoints Calculator">
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		
+		<Frames>
+			<!-- Drag Frame -->
+			<Frame name="$parent_DragFrame">
+				<Size>
+					<AbsDimension x="170" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnMouseDown>
+						if ( button == "LeftButton" ) then
+							self:GetParent():StartMoving();
+						elseif ( button == "RightButton" ) then
+							self:GetParent():ClearAllPoints();
+							self:GetParent():SetPoint("CENTER", "UIParent", "CENTER");
+						end
+					</OnMouseDown>
+					<OnMouseUp>
+						self:GetParent():StopMovingOrSizing();
+					</OnMouseUp>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetText(self.tooltip);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Frame>
+			<!-- Results Frame -->
+			<Frame name="TPCResultsFrame" inherits="TPCFrameBoxTemplate">
+				<Size>
+					<!-- y = 22 * 4 + 10 = 98 -->
+					<AbsDimension x="360" y="98"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="20" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						self:SetBackdropColor(0,0,0)
+					</OnLoad>
+				</Scripts>
+				<Frames>
+					<!-- TankPoints -->
+					<Frame name="TPCResults1" inherits="TPCResultsTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnEnter>
+								
+							</OnEnter>
+							<OnLeave>
+								
+							</OnLeave>
+						</Scripts>
+					</Frame>
+                    <!-- Result Lines -->
+					<Frame name="TPCResults2" inherits="TPCResultsTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCResults1" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+					<Frame name="TPCResults3" inherits="TPCResultsTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCResults2" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+					<Frame name="TPCResults4" inherits="TPCResultsTemplate" id="4">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCResults3" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+					<Frame name="TPCResults5" inherits="TPCResultsTemplate" id="5" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCResults4" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>
+			<!-- Combat Table Frame -->
+			<Frame name="TPCCombatTableFrame" inherits="TPCFrameBoxTemplate">
+				<Size>
+					<!-- y = 22 * 7 + 10 = 164 -->
+					<AbsDimension x="360" y="164"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="TPCResultsFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						self:SetBackdropColor(0,0,0)
+					</OnLoad>
+				</Scripts>
+				<Frames>
+					<!-- Miss -->
+					<Frame name="TPCCombatTable1" inherits="TPCResultsTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<!-- Dodge -->
+					<Frame name="TPCCombatTable2" inherits="TPCResultsTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCCombatTable1" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+					<!-- Parry -->
+					<Frame name="TPCCombatTable3" inherits="TPCResultsTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCCombatTable2" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+					<!-- Block -->
+					<Frame name="TPCCombatTable4" inherits="TPCResultsTemplate" id="4">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCCombatTable3" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+					<!-- Crit -->
+					<Frame name="TPCCombatTable5" inherits="TPCResultsTemplate" id="5">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCCombatTable4" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+					<!-- Crushing -->
+					<Frame name="TPCCombatTable6" inherits="TPCResultsTemplate" id="6">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCCombatTable5" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+					<!-- Hit -->
+					<Frame name="TPCCombatTable7" inherits="TPCResultsTemplate" id="7">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCCombatTable6" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>
+			<!-- Player Stats Frame -->
+			<Frame name="TPCPlayerStatsFrame" inherits="TPCFrameBoxTemplate">
+				<Size>
+					<!-- y = 22 * 11 + 10 = 252 -->
+					<AbsDimension x="360" y="252"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="TPCCombatTableFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						self:SetBackdropColor(0,0,0)
+					</OnLoad>
+				</Scripts>
+				<Frames>
+					<!-- Strength -->
+					<Frame name="TPCPlayerStats1" inherits="TPCVariablesTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<!-- Agility -->
+					<Frame name="TPCPlayerStats2" inherits="TPCVariablesTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCPlayerStats1" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+					<!-- Stamina -->
+					<Frame name="TPCPlayerStats3" inherits="TPCVariablesTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCPlayerStats2" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+					<!-- Max Health -->
+					<Frame name="TPCPlayerStats4" inherits="TPCVariablesTemplate" id="4">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCPlayerStats3" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+					<!-- Armor (Items) -->
+					<Frame name="TPCPlayerStats5" inherits="TPCSwapingVariableTemplate" id="5">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCPlayerStats4" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								self.next = "TPCPlayerStats6"
+							</OnLoad>
+						</Scripts>
+					</Frame>
+					<!-- Armor -->
+					<Frame name="TPCPlayerStats6" inherits="TPCSwapingVariableTemplate" id="6">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCPlayerStats4" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								self.next = "TPCPlayerStats5"
+								self:Hide()
+							</OnLoad>
+						</Scripts>
+					</Frame>
+					<!-- Defense Rating -->
+					<Frame name="TPCPlayerStats7" inherits="TPCSwapingVariableTemplate" id="7">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCPlayerStats5" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								self.next = "TPCPlayerStats8"
+							</OnLoad>
+						</Scripts>
+					</Frame>
+					<!-- Defense -->
+					<Frame name="TPCPlayerStats8" inherits="TPCSwapingVariableTemplate" id="8">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCPlayerStats5" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								self.next = "TPCPlayerStats7"
+								self:Hide()
+							</OnLoad>
+						</Scripts>
+					</Frame>
+					<!-- Dodge Rating -->
+					<Frame name="TPCPlayerStats9" inherits="TPCSwapingVariableTemplate" id="9">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCPlayerStats7" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								self.next = "TPCPlayerStats10"
+							</OnLoad>
+						</Scripts>
+					</Frame>
+					<!-- Dodge -->
+					<Frame name="TPCPlayerStats10" inherits="TPCSwapingVariableTemplate" id="10">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCPlayerStats7" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								self.next = "TPCPlayerStats9"
+								self:Hide()
+							</OnLoad>
+						</Scripts>
+					</Frame>
+					<!-- Parry Rating -->
+					<Frame name="TPCPlayerStats11" inherits="TPCSwapingVariableTemplate" id="11">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCPlayerStats9" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								self.next = "TPCPlayerStats12"
+							</OnLoad>
+						</Scripts>
+					</Frame>
+					<!-- Parry -->
+					<Frame name="TPCPlayerStats12" inherits="TPCSwapingVariableTemplate" id="12">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCPlayerStats9" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								self.next = "TPCPlayerStats11"
+								self:Hide()
+							</OnLoad>
+						</Scripts>
+					</Frame>
+					<!-- Block Rating -->
+					<Frame name="TPCPlayerStats13" inherits="TPCSwapingVariableTemplate" id="13">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCPlayerStats11" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								self.next = "TPCPlayerStats14"
+							</OnLoad>
+						</Scripts>
+					</Frame>
+					<!-- Block -->
+					<Frame name="TPCPlayerStats14" inherits="TPCSwapingVariableTemplate" id="14">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCPlayerStats11" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								self.next = "TPCPlayerStats13"
+								self:Hide()
+							</OnLoad>
+						</Scripts>
+					</Frame>
+					<!-- Block Value -->
+					<Frame name="TPCPlayerStats15" inherits="TPCVariablesTemplate" id="15">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCPlayerStats13" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+					<!-- Resilience -->
+					<Frame name="TPCPlayerStats16" inherits="TPCVariablesTemplate" id="16">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCPlayerStats15" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>
+			<!-- Mob Stats Frame -->
+			<Frame name="TPCMobStatsFrame" inherits="TPCFrameBoxTemplate">
+				<Size>
+					<!-- y = 22 * 2 + 10 = 54 -->
+					<AbsDimension x="360" y="54"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="TPCPlayerStatsFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						self:SetBackdropColor(0,0,0)
+					</OnLoad>
+				</Scripts>
+				<Frames>
+					<!-- Mob Level -->
+					<Frame name="TPCMobStats1" inherits="TPCVariablesTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<!-- Mob Damage -->
+					<Frame name="TPCMobStats2" inherits="TPCVariablesTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TPCMobStats1" relativePoint="BOTTOMLEFT"/>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>
+			<!-- Reset Button -->
+			<Button name="$parent_ResetButton" inherits="OptionsButtonTemplate" text="Reset">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="20" y="20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						TankPointsCalculatorFrame_ResetButton_OnClick(self, button, down)
+					</OnClick>
+				</Scripts>
+			</Button>
+			<!-- Close Button -->
+			<Button name="$parent_CloseButton" inherits="OptionsButtonTemplate" text="Close">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-20" y="20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						HideUIPanel(TankPointsCalculatorFrame)
+						PaperDollFrame_UpdateStats()
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		
+		<Scripts>
+			<OnLoad>
+				TankPointsCalculatorFrame_OnLoad(self)
+			</OnLoad>
+			<OnEvent>
+				TankPointsCalculatorFrame_OnEvent(self, event, ...)
+			</OnEvent>
+			<OnShow>
+				TankPointsCalculatorFrame_OnShow()
+			</OnShow>
+			<OnMouseDown>
+				if ( arg1 == "LeftButton" ) then
+					self:StartMoving();
+				end
+			</OnMouseDown>
+			<OnMouseUp>
+				self:StopMovingOrSizing();
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+</Ui>

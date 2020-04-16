@@ -1,0 +1,33 @@
+package-as: TankPoints
+
+ignore:
+ - TankPoints.wowproj
+ - WowAddons.wowsln
+ - WowAddons.wowsuo
+ - CalculatorFrame Documentation.psd
+
+externals:
+ Libs/LibStub: 
+  url: svn://svn.wowace.com/wow/libstub/mainline/trunk
+  tag: latest
+ Libs/CallbackHandler-1.0:
+  url: svn://svn.wowace.com/wow/callbackhandler/mainline/trunk/CallbackHandler-1.0
+  tag: latest
+ Libs/AceGUI-3.0:
+  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceGUI-3.0
+ Libs/AceConfig-3.0:
+  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceConfig-3.0
+ Libs/AceConsole-3.0:
+  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceConsole-3.0
+ Libs/AceDB-3.0:
+  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceDB-3.0
+ Libs/AceEvent-3.0:
+  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceEvent-3.0
+ Libs/AceAddon-3.0:
+  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceAddon-3.0
+ Libs/AceLocale-3.0:
+  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceLocale-3.0
+ Libs/LibStatLogic-1.2:
+  url: svn://svn.wowace.com/wow/libstatlogic-1-2/mainline/trunk/LibStatLogic-1.2
+ Libs/LibTipHooker-1.1:
+  url: svn://svn.wowace.com/wow/libtiphooker-1-1/mainline/trunk/LibTipHooker-1.1
